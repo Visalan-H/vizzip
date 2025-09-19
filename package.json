@@ -1,0 +1,27 @@
+{
+  "name": "vizzip",
+  "version": "1.0.0",
+  "description": "Compress files using Huffman encoding into .vizz format",
+  "main": "src/huffman.js",
+  "bin": {
+    "vizzip": "./bin/cli.js"
+  },
+  "keywords": [
+    "compression",
+    "huffman",
+    "vizz",
+    "cli",
+    "file-compression",
+    "lossless"
+  ],
+  "author": "Visalan H",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Visalan-H/vizzip.git"
+  },
+  "homepage": "https://github.com/Visalan-H/vizzip#readme",
+  "bugs": {
+    "url": "https://github.com/Visalan-H/vizzip/issues"
+  }
+}
