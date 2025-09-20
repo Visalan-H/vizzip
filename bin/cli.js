@@ -11,15 +11,16 @@ function createVizz(message, outputPath, inputPath) {
     const encoded = encode(message, codes);
 
     const originalBits = message.length * 8;
-    const compressedBits = encoded.length;
+    const compressedBits = encoded.readUInt32BE(0);
     const savedBits = originalBits - compressedBits;
     const ratio = ((savedBits / originalBits) * 100).toFixed(1);
 
     const vizzData = {
         format: 'vizz',
         version: '1.0',
+        type: 'vizz file',
         originalFileName: path.basename(inputPath),
-        data: encoded,
+        data: encoded.toString('base64'),
         codes: codes
     };
 
@@ -56,7 +57,8 @@ function decodeVizz(filePath) {
         current.char = char;
     }
 
-    const decoded = decode(data.data, root);
+    const encodedBuffer = Buffer.from(data.data, 'base64');
+    const decoded = decode(encodedBuffer, root);
     const originalFileName = data.originalFileName || 'decompressed.txt';
     fs.writeFileSync(originalFileName, decoded);
     return { decoded, originalFileName };
